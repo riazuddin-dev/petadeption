@@ -1,208 +1,107 @@
-const API =
-process.env.NEXT_PUBLIC_API_URL;
-
-
+const API = process.env.NEXT_PUBLIC_API_URL;
 
 // ALL PETS
-export const AllUser =
-async (
-  search = "",
-  species = ""
-) => {
-
-  const res =
-    await fetch(
-
-`${API}/pets?search=${search}&species=${species}`
-
-    );
+export const AllUser = async (search = "", species = "") => {
+  const res = await fetch(`${API}/pets?search=${search}&species=${species}`);
 
   return await res.json();
 };
-
-
 
 // SINGLE PET
-export const OneUserId =
-async (id) => {
-
-  const res =
-    await fetch(
-      `${API}/pets/${id}`
-    );
+export const OneUserId = async (id) => {
+  const res = await fetch(`${API}/pets/${id}`);
 
   return await res.json();
 };
-
-
 
 // ADD PET
-export const catAdd =
-async (data) => {
+export const catAdd = async (data) => {
+  const res = await fetch(`${API}/pets-add`, {
+    method: "POST",
 
-  const res =
-    await fetch(
-      `${API}/pets-add`,
-      {
+    headers: {
+      "content-type": "application/json",
+    },
 
-        method: "POST",
-
-        headers: {
-
-          "content-type":
-          "application/json",
-        },
-
-        body:
-        JSON.stringify(data),
-      }
-    );
+    body: JSON.stringify(data),
+  });
 
   return await res.json();
 };
-
-
 
 // MY PETS
-export const PetAddUser =
-async (id) => {
-
-  const res =
-    await fetch(
-      `${API}/pet/${id}`
-    );
+export const PetAddUser = async (id) => {
+  const res = await fetch(`${API}/pet/${id}`);
 
   return await res.json();
 };
-
-
 
 // DELETE PET
-export const HandelDelete =
-async (id) => {
-
-  const res =
-    await fetch(
-      `${API}/delete-pat/${id}`,
-      {
-
-        method: "DELETE",
-      }
-    );
+export const HandelDelete = async (id) => {
+  const res = await fetch(`${API}/delete-pat/${id}`, {
+    method: "DELETE",
+  });
 
   return await res.json();
 };
-
-
 
 // UPDATE PET
-export const HandelUpdate =
-async (id, data) => {
+export const HandelUpdate = async (id, data) => {
+  const res = await fetch(`${API}/update-pet/${id}`, {
+    method: "PUT",
 
-  const res =
-    await fetch(
-      `${API}/update-pet/${id}`,
-      {
+    headers: {
+      "content-type": "application/json",
+    },
 
-        method: "PUT",
-
-        headers: {
-
-          "content-type":
-          "application/json",
-        },
-
-        body:
-        JSON.stringify(data),
-      }
-    );
+    body: JSON.stringify(data),
+  });
 
   return await res.json();
 };
-
-
 
 // REQUEST PET
-export const RequestPetData =
-async (data) => {
+export const RequestPetData = async (data) => {
+  const res = await fetch(`${API}/request-pet`, {
+    method: "POST",
 
-  const res =
-    await fetch(
-      `${API}/request-pet`,
-      {
+    headers: {
+      "content-type": "application/json",
+    },
 
-        method: "POST",
-
-        headers: {
-
-          "content-type":
-          "application/json",
-        },
-
-        body:
-        JSON.stringify(data),
-      }
-    );
+    body: JSON.stringify(data),
+  });
 
   return await res.json();
 };
-
-
 
 // GET REQUEST
-export const RequestData =
-async (id) => {
-
-  const res =
-    await fetch(
-      `${API}/request-pet/${id}`
-    );
+export const RequestData = async (id) => {
+  const res = await fetch(`${API}/request-pet/${id}`);
 
   return await res.json();
 };
-
-
 
 // UPDATE REQUEST STATUS
-export const UpdateStatus =
-async (
-  id,
-  status
-) => {
+export const UpdateStatus = async (id, status) => {
+  const res = await fetch(`${API}/request-status/${id}`, {
+    method: "PUT",
 
-  const res =
-    await fetch(
-      `${API}/request-status/${id}`,
-      {
+    headers: {
+      "content-type": "application/json",
+    },
 
-        method: "PUT",
-
-        headers: {
-
-          "content-type":
-          "application/json",
-        },
-
-        body:
-        JSON.stringify({
-          status,
-        }),
-      }
-    );
+    body: JSON.stringify({
+      status,
+    }),
+  });
 
   return await res.json();
 };
 
-
-
 // MY REQUESTS
-export const MyRequestData =
-async (id) => {
-
-  const res =
-    await fetch(
-      `${API}/my-request/${id}`
-    );
+export const MyRequestData = async (id) => {
+  const res = await fetch(`${API}/my-request/${id}`);
 
   return await res.json();
 };
