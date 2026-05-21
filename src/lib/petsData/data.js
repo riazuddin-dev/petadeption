@@ -4,7 +4,12 @@ const API = process.env.NEXT_PUBLIC_API_URL;
 export const AllUser = async (search = "", species = "") => {
   const res = await fetch(`${API}/pets?search=${search}&species=${species}`);
 
-  return await res.json();
+  
+const data= await res.json()
+
+
+
+return data
 };
 
 // SINGLE PET
