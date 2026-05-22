@@ -1,26 +1,14 @@
-import { NextResponse } from "next/server";
-
-export function proxy() {
-  // const token = request.cookies.get("token");
-
-  // // PRIVATE ROUTE
-  // if (!token) {
-  //   return NextResponse.redirect(new URL("/login", request.url));
-  // }
-
-  return NextResponse.next();
+import { NextResponse } from 'next/server'
+ 
+// This function can be marked `async` if using `await` inside
+export function proxy(request) {
+  return NextResponse.redirect(new URL('/login', request.url))
 }
+ 
 
 export const config = {
-  matcher: [
-    "/dashboard/:path*",
+  matcher:   "/dashboard/:path*",
 
-    "/add-pet/:path*",
+}
 
-    "/my-listings/:path*",
 
-    "/my-requests/:path*",
-
-    "/update-pet/:path*",
-  ],
-};

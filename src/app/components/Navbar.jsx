@@ -2,8 +2,13 @@
 
 import Link from "next/link";
 
-import { useState }
-from "react";
+import {
+  useState,
+} from "react";
+
+import {
+  usePathname,
+} from "next/navigation";
 
 import {
   Menu,
@@ -24,6 +29,9 @@ import { router }
 from "better-auth/api";
 
 export default function Navbar() {
+
+  const pathname =
+    usePathname();
 
   const {
     data: session
@@ -93,33 +101,92 @@ export default function Navbar() {
           {/* DESKTOP MENU */}
           <div className="hidden lg:flex items-center gap-3">
 
+            {/* HOME */}
             <Link
               href="/"
-              className="px-5 h-11 rounded-2xl flex items-center text-white/80 hover:bg-white/10 hover:text-white transition font-medium"
+
+              className={`
+                px-5
+                h-11
+                rounded-2xl
+                flex
+                items-center
+                transition
+                font-semibold
+
+                ${
+                  pathname === "/"
+
+                  ?
+
+                  "bg-[#F4A300] text-[#12372A] shadow-lg"
+
+                  :
+
+                  "text-white/80 hover:bg-white/10 hover:text-[#F4A300]"
+                }
+              `}
             >
               Home
             </Link>
 
+            {/* ALL PETS */}
             <Link
               href="/pets"
-              className="px-5 h-11 rounded-2xl flex items-center text-white/80 hover:bg-white/10 hover:text-white transition font-medium"
+
+              className={`
+                px-5
+                h-11
+                rounded-2xl
+                flex
+                items-center
+                transition
+                font-semibold
+
+                ${
+                  pathname === "/pets"
+
+                  ?
+
+                  "bg-[#F4A300] text-[#12372A] shadow-lg"
+
+                  :
+
+                  "text-white/80 hover:bg-white/10 hover:text-[#F4A300]"
+                }
+              `}
             >
               All Pets
             </Link>
 
-            <Link
-              href="/dashboard/add-pet"
-              className="px-5 h-11 rounded-2xl flex items-center text-white/80 hover:bg-white/10 hover:text-white transition font-medium"
-            >
-              Add Pet
-            </Link>
+            {/* DASHBOARD */}
+         <Link
+  href="/dashboard/add-pet"
 
-            <Link
-              href="/dashboard/my-requests"
-              className="px-5 h-11 rounded-2xl flex items-center text-white/80 hover:bg-white/10 hover:text-white transition font-medium"
-            >
-              Requests
-            </Link>
+  className={`
+    px-5
+    h-11
+    rounded-2xl
+    flex
+    items-center
+    transition
+    font-semibold
+
+    ${
+      pathname.includes("/dashboard")
+
+      ?
+
+      "bg-[#F4A300] text-[#12372A] shadow-lg"
+
+      :
+
+      "text-white/80 hover:bg-white/10 hover:text-[#F4A300]"
+    }
+  `}
+>
+  Dashboard
+</Link>
           </div>
 
           {/* RIGHT */}
@@ -134,7 +201,7 @@ export default function Navbar() {
                   {/* PROFILE */}
                   <div className="relative">
 
-                    {/* BUTTON */}
+                    {/* PROFILE BUTTON */}
                     <button
 
                       onClick={() =>
@@ -192,10 +259,10 @@ export default function Navbar() {
                     {
                       openProfile && (
 
-                        <div className="absolute right-0 top-[85px] w-[310px] bg-white rounded-[30px] shadow-[0_30px_80px_rgba(0,0,0,0.15)] p-5 z-[99999] border border-[#f1f1f1]">
+                        <div className="absolute right-0 top-[85px] w-[320px] bg-[#F8F5EE] rounded-[32px] shadow-[0_30px_80px_rgba(0,0,0,0.18)] p-5 z-[99999] border border-[#ece7dd]">
 
-                          {/* TOP */}
-                          <div className="bg-[#F8F5EE] rounded-[24px] p-5">
+                          {/* USER TOP */}
+                          <div className="bg-white rounded-[24px] p-5 border border-[#ece7dd]">
 
                             <div className="flex items-center gap-4">
 
@@ -227,46 +294,93 @@ export default function Navbar() {
                           {/* MENU */}
                           <div className="mt-5 space-y-2">
 
-                            {/* DASHBOARD */}
+                            {/* ADD PET */}
                             <Link
                               href="/dashboard/add-pet"
-                              className="flex items-center gap-4 px-5 h-[58px] rounded-[20px] hover:bg-[#F8F5EE] text-[#173c2d] transition-all duration-300 font-medium"
+
+                              className={`
+                                flex
+                                items-center
+                                gap-4
+                                px-5
+                                h-[58px]
+                                rounded-[20px]
+                                transition-all
+                                duration-300
+                                font-semibold
+
+                                ${
+                                  pathname === "/dashboard/add-pet"
+
+                                  ?
+
+                                  "bg-[#12372A] text-[#F4A300]"
+
+                                  :
+
+                                  "hover:bg-white text-[#173c2d]"
+                                }
+                              `}
                             >
 
-                              <div className="w-11 h-11 rounded-2xl bg-[#EFFFF8] flex items-center justify-center">
+                              <div className="w-11 h-11 rounded-2xl bg-[#F4A300]/20 flex items-center justify-center">
 
-                                <LayoutDashboard className="w-5 h-5 text-[#00A86B]" />
+                                <PlusCircle className="w-5 h-5 text-[#F4A300]" />
                               </div>
 
-                              Dashboard
+                              Add Pet
                             </Link>
 
                             {/* REQUEST */}
                             <Link
                               href="/dashboard/my-requests"
-                              className="flex items-center gap-4 px-5 h-[58px] rounded-[20px] hover:bg-[#F8F5EE] text-[#173c2d] transition-all duration-300 font-medium"
+
+                              className={`
+                                flex
+                                items-center
+                                gap-4
+                                px-5
+                                h-[58px]
+                                rounded-[20px]
+                                transition-all
+                                duration-300
+                                font-semibold
+
+                                ${
+                                  pathname === "/dashboard/my-requests"
+
+                                  ?
+
+                                  "bg-[#12372A] text-[#F4A300]"
+
+                                  :
+
+                                  "hover:bg-white text-[#173c2d]"
+                                }
+                              `}
                             >
 
-                              <div className="w-11 h-11 rounded-2xl bg-[#FFF4F4] flex items-center justify-center">
+                              <div className="w-11 h-11 rounded-2xl bg-[#F4A300]/20 flex items-center justify-center">
 
-                                <Heart className="w-5 h-5 text-[#FF4B6E]" />
+                                <Heart className="w-5 h-5 text-[#F4A300]" />
                               </div>
 
                               My Requests
                             </Link>
 
-                            {/* ADD PET */}
+                            {/* DASHBOARD */}
                             <Link
                               href="/dashboard/add-pet"
-                              className="flex items-center gap-4 px-5 h-[58px] rounded-[20px] hover:bg-[#F8F5EE] text-[#173c2d] transition-all duration-300 font-medium"
+
+                              className="flex items-center gap-4 px-5 h-[58px] rounded-[20px] hover:bg-white text-[#173c2d] transition-all duration-300 font-semibold"
                             >
 
-                              <div className="w-11 h-11 rounded-2xl bg-[#FFF8E8] flex items-center justify-center">
+                              <div className="w-11 h-11 rounded-2xl bg-[#F4A300]/20 flex items-center justify-center">
 
-                                <PlusCircle className="w-5 h-5 text-[#F4A300]" />
+                                <LayoutDashboard className="w-5 h-5 text-[#F4A300]" />
                               </div>
 
-                              Add New Pet
+                              Dashboard
                             </Link>
 
                             {/* LOGOUT */}
@@ -274,7 +388,7 @@ export default function Navbar() {
 
                               onClick={HandelLogout}
 
-                              className="w-full flex items-center gap-4 px-5 h-[58px] rounded-[20px] hover:bg-red-50 text-red-500 transition-all duration-300 font-medium"
+                              className="w-full flex items-center gap-4 px-5 h-[58px] rounded-[20px] hover:bg-red-50 text-red-500 transition-all duration-300 font-semibold"
                             >
 
                               <div className="w-11 h-11 rounded-2xl bg-red-100 flex items-center justify-center">
@@ -304,7 +418,7 @@ export default function Navbar() {
                     Login
                   </Link>
 
-                  {/* SIGNUP */}
+                  {/* REGISTER */}
                   <Link
                     href="/register"
                     className="bg-[#F4A300] hover:bg-[#e69a00] transition px-6 h-[50px] rounded-2xl text-[#12372A] font-bold shadow-xl flex items-center"
@@ -316,7 +430,7 @@ export default function Navbar() {
             }
           </div>
 
-          {/* MOBILE MENU */}
+          {/* MOBILE MENU BUTTON */}
           <button
             onClick={() =>
               setMobileMenu(!mobileMenu)
@@ -361,14 +475,7 @@ export default function Navbar() {
                 href="/dashboard/add-pet"
                 className="h-[55px] rounded-2xl px-5 flex items-center text-white hover:bg-white/10"
               >
-                Add Pet
-              </Link>
-
-              <Link
-                href="/dashboard/my-requests"
-                className="h-[55px] rounded-2xl px-5 flex items-center text-white hover:bg-white/10"
-              >
-                Requests
+                Dashboard
               </Link>
 
               {
