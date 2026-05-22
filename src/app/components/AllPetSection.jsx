@@ -76,19 +76,6 @@ export default function CreativePetsSection() {
 
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#F4A300]/10 rounded-full blur-3xl"></div>
 
-      {/* PAWS */}
-      <img
-        src="/image(116).png"
-        alt="paw"
-        className="absolute top-20 left-10 w-36 opacity-[0.04]"
-      />
-
-      <img
-        src="/image(116).png"
-        alt="paw"
-        className="absolute bottom-20 right-10 w-40 opacity-[0.04]"
-      />
-
       {/* TOP */}
       <div className="text-center mb-24 px-4 relative z-10">
 
@@ -113,34 +100,10 @@ export default function CreativePetsSection() {
 
         <div className="relative bg-white/60 backdrop-blur-3xl border border-white/40 rounded-[40px] overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.06)]">
 
-          {/* GLOW */}
-          <div className="absolute top-0 left-0 w-[250px] h-[250px] bg-[#00A86B]/10 rounded-full blur-3xl"></div>
-
-          <div className="absolute bottom-0 right-0 w-[250px] h-[250px] bg-[#F4A300]/10 rounded-full blur-3xl"></div>
-
           <div className="relative z-10 p-5 md:p-7 flex flex-col lg:flex-row gap-5 items-center">
 
             {/* SEARCH */}
             <div className="flex-1 w-full relative">
-
-              <div className="absolute left-6 top-1/2 -translate-y-1/2">
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 text-[#1E4D3D]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-4.35-4.35m1.35-5.15a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
 
               <input
                 type="text"
@@ -157,15 +120,10 @@ export default function CreativePetsSection() {
                   rounded-[26px]
                   bg-[#F8F5EE]
                   border border-[#ECE7DD]
-                  pl-16
-                  pr-6
+                  px-6
                   text-[#1E2E23]
                   font-semibold
                   outline-none
-                  placeholder:text-gray-400
-                  focus:border-[#F4A300]
-                  transition-all
-                  duration-300
                 "
               />
             </div>
@@ -190,10 +148,6 @@ export default function CreativePetsSection() {
                   text-[#1E2E23]
                   font-black
                   outline-none
-                  appearance-none
-                  focus:border-[#F4A300]
-                  transition-all
-                  duration-300
                 "
               >
 
@@ -258,7 +212,6 @@ export default function CreativePetsSection() {
               <p className="text-gray-500 text-lg leading-relaxed max-w-2xl mx-auto mt-5">
 
                 No pets available right now.
-                Try another search or category.
               </p>
             </div>
           </div>
@@ -291,7 +244,7 @@ export default function CreativePetsSection() {
                   >
 
                     {/* IMAGE */}
-                    <div className="relative overflow-hidden rounded-[10px] group">
+                    <div className="relative overflow-hidden rounded-[20px] group shadow-2xl">
 
                       <img
                         src={pet.image}
@@ -299,7 +252,7 @@ export default function CreativePetsSection() {
                         className="w-full h-[560px] object-cover group-hover:scale-105 transition duration-700"
                       />
 
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
 
                       {/* BADGES */}
                       <div className="absolute top-5 left-5 right-5 flex justify-between">
@@ -309,7 +262,7 @@ export default function CreativePetsSection() {
                           {pet.species}
                         </span>
 
-                        <span className="bg-[#F4A300] text-white px-4 py-2 rounded-full text-[11px] font-black">
+                        <span className="bg-[#F4A300] text-[#12372A] px-4 py-2 rounded-full text-[11px] font-black shadow-lg">
 
                           ${pet.adoptionFee}
                         </span>
@@ -322,12 +275,16 @@ export default function CreativePetsSection() {
                         bg-[#F5F0E4]
                         p-7
                         max-w-[360px]
-                        relative z-10
+                        relative
+                        z-10
+                        rounded-[30px]
+                        shadow-[0_20px_60px_rgba(0,0,0,0.08)]
+                        border border-white/50
 
                         ${
                           index % 2 === 0
-                          ? "-mt-16 ml-auto"
-                          : "-mt-16"
+                          ? "-mt-20 ml-auto"
+                          : "-mt-20"
                         }
                       `}
                     >
@@ -347,17 +304,116 @@ export default function CreativePetsSection() {
                         {pet.description}
                       </p>
 
-                      {/* BUTTON */}
-                      <div className="flex gap-3 mt-8">
+                      {/* INFO */}
+                      <div className="grid grid-cols-2 gap-5 mt-8">
 
+                        <div className="bg-white rounded-2xl p-4">
+
+                          <p className="text-[10px] uppercase text-gray-400 font-bold">
+
+                            Breed
+                          </p>
+
+                          <h4 className="font-black text-[#1E2E23] mt-1 text-sm">
+
+                            {pet.breed}
+                          </h4>
+                        </div>
+
+                        <div className="bg-white rounded-2xl p-4">
+
+                          <p className="text-[10px] uppercase text-gray-400 font-bold">
+
+                            Age
+                          </p>
+
+                          <h4 className="font-black text-[#1E2E23] mt-1 text-sm">
+
+                            {pet.age}
+                          </h4>
+                        </div>
+
+                        <div className="bg-white rounded-2xl p-4">
+
+                          <p className="text-[10px] uppercase text-gray-400 font-bold">
+
+                            Gender
+                          </p>
+
+                          <h4 className="font-black text-[#1E2E23] mt-1 text-sm">
+
+                            {pet.gender}
+                          </h4>
+                        </div>
+
+                        <div className="bg-white rounded-2xl p-4">
+
+                          <p className="text-[10px] uppercase text-gray-400 font-bold">
+
+                            Fee
+                          </p>
+
+                          <h4 className="font-black text-[#F4A300] mt-1 text-sm">
+
+                            ${pet.adoptionFee}
+                          </h4>
+                        </div>
+                      </div>
+
+                      {/* BUTTONS */}
+                      <div className="flex flex-col sm:flex-row gap-4 mt-8">
+
+                        {/* VIEW DETAILS */}
                         <Link
                           href={`/pets/${pet._id}`}
                           className="flex-1"
                         >
 
-                          <button className="w-full bg-[#1E4D3D] hover:bg-[#16382d] text-white h-[55px] rounded-full text-sm font-black transition-all duration-300 hover:scale-[1.03] shadow-xl">
+                          <button
+                            className="
+                              w-full
+                              h-[58px]
+                              rounded-full
+                              bg-[#12372A]
+                              hover:bg-[#0f2d22]
+                              text-white
+                              font-black
+                              text-sm
+                              tracking-wide
+                              transition-all
+                              duration-300
+                              hover:scale-[1.03]
+                            "
+                          >
 
                             View Details
+                          </button>
+                        </Link>
+
+                        {/* ADOPT NOW */}
+                        <Link
+                          href={`/pets/${pet._id}`}
+                          className="flex-1"
+                        >
+
+                          <button
+                            className="
+                              w-full
+                              h-[58px]
+                              rounded-full
+                              bg-[#F4A300]
+                              hover:bg-[#df9600]
+                              text-[#12372A]
+                              font-black
+                              text-sm
+                              tracking-wide
+                              transition-all
+                              duration-300
+                              hover:scale-[1.03]
+                            "
+                          >
+
+                            Adopt Now 🐾
                           </button>
                         </Link>
                       </div>
