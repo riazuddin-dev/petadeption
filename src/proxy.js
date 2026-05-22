@@ -1,23 +1,16 @@
 import { NextResponse }
 from "next/server";
 
-import { auth }
-from "./lib/auth";
-
-export async function proxy(
+export function proxy(
   request
 ) {
 
-  // SESSION CHECK
-  const session =
-    await auth.api.getSession({
+  const token =
+    request.cookies.get(
+      "token"
+    );
 
-      headers:
-        request.headers,
-    });
-
-  // LOGIN NA THAKLE
-  if (!session) {
+  if(!token){
 
     return NextResponse.redirect(
 
@@ -28,11 +21,21 @@ export async function proxy(
     );
   }
 
-  // LOGIN THAKLE
   return NextResponse.next();
 }
 
 export const config = {
 
-  matcher: "/dashboard/:path*",
+  matcher: [
+
+    "/dashboard/:path*",
+
+    "/add-pet/:path*",
+
+    "/my-listings/:path*",
+
+    "/my-requests/:path*",
+
+    "/update-pet/:path*",
+  ],
 };
