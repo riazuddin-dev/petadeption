@@ -5,6 +5,8 @@ import {
   Phone,
   MapPin,
   Send,
+  PawPrint,
+  HeartHandshake,
 } from "lucide-react";
 
 import {
@@ -15,90 +17,99 @@ import {
 } from "react-icons/fa";
 
 export default function Footer() {
+
   return (
-    <footer className="relative bg-[#005F56] overflow-hidden text-white mt-24">
-      
-      {/* TOP CURVE */}
+
+    <footer className="relative overflow-hidden bg-[#12372A] text-white mt-28">
+
+      {/* TOP SHAPE */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
+
         <svg
           viewBox="0 0 1440 220"
           preserveAspectRatio="none"
           className="w-full h-[120px]"
         >
+
           <path
             d="M0,96L80,101.3C160,107,320,117,480,117.3C640,117,800,107,960,96C1120,85,1280,75,1360,69.3L1440,64L1440,220L1360,220C1280,220,1120,220,960,220C800,220,640,220,480,220C320,220,160,220,80,220L0,220Z"
-            fill="#F4EFE6"
+            fill="#F6F1E8"
           />
         </svg>
       </div>
 
-      {/* BLUR EFFECT */}
-      <div className="absolute top-32 left-10 w-72 h-72 bg-[#F4A300]/10 rounded-full blur-3xl"></div>
+      {/* BLUR */}
+      <div className="absolute top-20 left-10 w-[350px] h-[350px] bg-[#F4A300]/10 rounded-full blur-3xl"></div>
 
-      <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-10 right-10 w-[350px] h-[350px] bg-[#00A86B]/10 rounded-full blur-3xl"></div>
 
       {/* MAIN */}
       <div className="relative max-w-7xl mx-auto px-5 lg:px-8 pt-40 pb-10">
-        
+
+        {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14">
-          
+
           {/* BRAND */}
           <div>
-            
+
             {/* LOGO */}
             <Link
               href="/"
-              className="flex items-center gap-3 group"
+              className="flex items-center gap-4"
             >
-              
-              <div className="relative">
-                
-                <div className="absolute inset-0 bg-[#F4A300]/30 blur-xl rounded-full"></div>
 
-                <div className="relative bg-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl border-[3px] border-[#F4A300]/20">
-                  
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
-                    alt="logo"
-                    className="w-8 h-8 object-contain"
-                  />
+              <div className="relative">
+
+                {/* GLOW */}
+                <div className="absolute inset-0 bg-[#F4A300]/40 blur-2xl rounded-full"></div>
+
+                {/* ICON */}
+                <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-[#F4A300] to-[#ffd76b] flex items-center justify-center shadow-[0_15px_40px_rgba(244,163,0,0.35)] border-[3px] border-white/20">
+
+                  <PawPrint className="w-8 h-8 text-[#173c2d]" />
                 </div>
               </div>
 
-              <div className="leading-none">
-                
-                <h1 className="text-white text-[30px] font-bold tracking-wide">
-                  PawsNest
+              {/* TEXT */}
+              <div>
+
+                <h1 className="text-[34px] font-black tracking-tight">
+
+                  PawHaven
                 </h1>
 
-                <p className="text-[#d9f3ee] text-[11px] tracking-[3px] uppercase mt-1">
-                  Pet Adoption
+                <p className="text-[#d9f3ee] uppercase tracking-[4px] text-[10px] mt-1">
+
+                  Pet Adoption Platform
                 </p>
               </div>
             </Link>
 
-            {/* TEXT */}
+            {/* DESCRIPTION */}
             <p className="text-[#d9f3ee] leading-relaxed mt-7 text-[15px]">
-              Helping rescued pets find loving homes and
-              caring families with happiness and endless love.
+
+              Helping rescued pets find loving homes,
+              caring families and endless happiness 🐾
             </p>
 
             {/* PET CARD */}
-            <div className="mt-7 bg-white/10 backdrop-blur-md border border-white/10 rounded-[30px] p-4 flex items-center gap-4">
-              
-              <img
-                src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=300&auto=format&fit=crop"
-                alt="pet"
-                className="w-16 h-16 rounded-2xl object-cover"
-              />
+            <div className="mt-8 bg-white/10 backdrop-blur-xl border border-white/10 rounded-[28px] p-5 flex items-center gap-4 shadow-xl">
+
+              <div className="w-16 h-16 rounded-2xl bg-[#F4A300] flex items-center justify-center shadow-lg">
+
+                <HeartHandshake className="w-8 h-8 text-[#173c2d]" />
+              </div>
 
               <div>
-                <h3 className="font-bold text-lg">
-                  Adopt Happiness
+
+                <h3 className="font-black text-lg">
+
+                  Adopt With Love
                 </h3>
 
-                <p className="text-sm text-[#d9f3ee]">
-                  Give pets a forever home ❤️
+                <p className="text-[#d9f3ee] text-sm mt-1">
+
+                  Every pet deserves a forever home ❤️
                 </p>
               </div>
             </div>
@@ -106,37 +117,43 @@ export default function Footer() {
 
           {/* QUICK LINKS */}
           <div>
-            <h2 className="text-2xl font-bold mb-7">
+
+            <h2 className="text-2xl font-black mb-8">
+
               Quick Links
             </h2>
 
-            <div className="flex flex-col gap-4">
-              
+            <div className="flex flex-col gap-5">
+
               <Link
                 href="/"
-                className="text-[#d9f3ee] hover:text-[#F4A300] transition"
+                className="text-[#d9f3ee] hover:text-[#F4A300] transition-all duration-300 hover:translate-x-1"
               >
+
                 Home
               </Link>
 
               <Link
                 href="/pets"
-                className="text-[#d9f3ee] hover:text-[#F4A300] transition"
+                className="text-[#d9f3ee] hover:text-[#F4A300] transition-all duration-300 hover:translate-x-1"
               >
+
                 All Pets
               </Link>
 
               <Link
-                href="/add-pet"
-                className="text-[#d9f3ee] hover:text-[#F4A300] transition"
+                href="/dashboard/add-pet"
+                className="text-[#d9f3ee] hover:text-[#F4A300] transition-all duration-300 hover:translate-x-1"
               >
+
                 Add Pet
               </Link>
 
               <Link
-                href="/my-requests"
-                className="text-[#d9f3ee] hover:text-[#F4A300] transition"
+                href="/dashboard/my-requests"
+                className="text-[#d9f3ee] hover:text-[#F4A300] transition-all duration-300 hover:translate-x-1"
               >
+
                 My Requests
               </Link>
             </div>
@@ -144,59 +161,76 @@ export default function Footer() {
 
           {/* CONTACT */}
           <div>
-            <h2 className="text-2xl font-bold mb-7">
+
+            <h2 className="text-2xl font-black mb-8">
+
               Contact Info
             </h2>
 
-            <div className="space-y-5">
-              
+            <div className="space-y-6">
+
+              {/* ADDRESS */}
               <div className="flex items-start gap-4">
-                
+
                 <div className="bg-white/10 p-3 rounded-2xl">
+
                   <MapPin className="w-5 h-5 text-[#F4A300]" />
                 </div>
 
                 <div>
-                  <h4 className="font-semibold">
+
+                  <h4 className="font-bold">
+
                     Address
                   </h4>
 
-                  <p className="text-[#d9f3ee] text-sm">
+                  <p className="text-[#d9f3ee] text-sm mt-1">
+
                     Dhaka, Bangladesh
                   </p>
                 </div>
               </div>
 
+              {/* PHONE */}
               <div className="flex items-start gap-4">
-                
+
                 <div className="bg-white/10 p-3 rounded-2xl">
+
                   <Phone className="w-5 h-5 text-[#F4A300]" />
                 </div>
 
                 <div>
-                  <h4 className="font-semibold">
+
+                  <h4 className="font-bold">
+
                     Phone
                   </h4>
 
-                  <p className="text-[#d9f3ee] text-sm">
+                  <p className="text-[#d9f3ee] text-sm mt-1">
+
                     +880 1234-567890
                   </p>
                 </div>
               </div>
 
+              {/* EMAIL */}
               <div className="flex items-start gap-4">
-                
+
                 <div className="bg-white/10 p-3 rounded-2xl">
+
                   <Mail className="w-5 h-5 text-[#F4A300]" />
                 </div>
 
                 <div>
-                  <h4 className="font-semibold">
+
+                  <h4 className="font-bold">
+
                     Email
                   </h4>
 
-                  <p className="text-[#d9f3ee] text-sm">
-                    support@pawsnest.com
+                  <p className="text-[#d9f3ee] text-sm mt-1">
+
+                    support@pawhaven.com
                   </p>
                 </div>
               </div>
@@ -205,57 +239,65 @@ export default function Footer() {
 
           {/* NEWSLETTER */}
           <div>
-            <h2 className="text-2xl font-bold mb-7">
+
+            <h2 className="text-2xl font-black mb-8">
+
               Newsletter
             </h2>
 
-            <p className="text-[#d9f3ee] text-[15px] leading-relaxed mb-5">
-              Subscribe to get pet adoption updates and
-              rescue stories.
+            <p className="text-[#d9f3ee] text-[15px] leading-relaxed mb-6">
+
+              Subscribe for adoption updates,
+              rescue stories and pet care tips.
             </p>
 
             {/* INPUT */}
-            <div className="bg-white rounded-full p-2 flex items-center shadow-xl">
-              
+            <div className="bg-white rounded-full p-2 flex items-center shadow-[0_15px_40px_rgba(0,0,0,0.18)]">
+
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="bg-transparent outline-none px-4 text-sm text-black w-full"
+                className="bg-transparent outline-none px-5 text-sm text-black w-full"
               />
 
-              <button className="bg-[#F4A300] hover:bg-[#e89a00] transition p-3 rounded-full shadow-lg">
-                <Send className="w-4 h-4 text-white" />
+              <button className="bg-[#F4A300] hover:bg-[#df9600] transition-all duration-300 p-4 rounded-full shadow-xl hover:scale-105">
+
+                <Send className="w-4 h-4 text-[#173c2d]" />
               </button>
             </div>
 
             {/* SOCIAL */}
             <div className="flex items-center gap-4 mt-8">
-              
+
               <Link
                 href="/"
-                className="bg-white/10 hover:bg-[#F4A300] transition-all duration-300 p-4 rounded-2xl hover:-translate-y-1"
+                className="w-14 h-14 rounded-2xl bg-white/10 hover:bg-[#F4A300] hover:text-[#173c2d] transition-all duration-300 flex items-center justify-center hover:-translate-y-1"
               >
+
                 <FaFacebookF className="w-4 h-4" />
               </Link>
 
               <Link
                 href="/"
-                className="bg-white/10 hover:bg-[#F4A300] transition-all duration-300 p-4 rounded-2xl hover:-translate-y-1"
+                className="w-14 h-14 rounded-2xl bg-white/10 hover:bg-[#F4A300] hover:text-[#173c2d] transition-all duration-300 flex items-center justify-center hover:-translate-y-1"
               >
+
                 <FaInstagram className="w-4 h-4" />
               </Link>
 
               <Link
                 href="/"
-                className="bg-white/10 hover:bg-[#F4A300] transition-all duration-300 p-4 rounded-2xl hover:-translate-y-1"
+                className="w-14 h-14 rounded-2xl bg-white/10 hover:bg-[#F4A300] hover:text-[#173c2d] transition-all duration-300 flex items-center justify-center hover:-translate-y-1"
               >
+
                 <FaTwitter className="w-4 h-4" />
               </Link>
 
               <Link
                 href="/"
-                className="bg-white/10 hover:bg-[#F4A300] transition-all duration-300 p-4 rounded-2xl hover:-translate-y-1"
+                className="w-14 h-14 rounded-2xl bg-white/10 hover:bg-[#F4A300] hover:text-[#173c2d] transition-all duration-300 flex items-center justify-center hover:-translate-y-1"
               >
+
                 <FaLinkedinIn className="w-4 h-4" />
               </Link>
             </div>
@@ -263,13 +305,15 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM */}
-        <div className="border-t border-white/10 mt-16 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          
+        <div className="border-t border-white/10 mt-16 pt-7 flex flex-col md:flex-row items-center justify-between gap-4">
+
           <p className="text-[#d9f3ee] text-sm">
-            © 2025 PawsNest. All Rights Reserved.
+
+            © 2025 PawHaven. All Rights Reserved.
           </p>
 
           <p className="text-[#d9f3ee] text-sm">
+
             Made with ❤️ for pet lovers
           </p>
         </div>
