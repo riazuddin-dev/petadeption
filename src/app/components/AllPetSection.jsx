@@ -123,7 +123,6 @@ export default function CreativePetsSection() {
             {/* SEARCH */}
             <div className="flex-1 w-full relative">
 
-              {/* ICON */}
               <div className="absolute left-6 top-1/2 -translate-y-1/2">
 
                 <svg
@@ -214,26 +213,6 @@ export default function CreativePetsSection() {
                   Bird
                 </option>
               </select>
-
-              {/* ARROW */}
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 text-[#1E4D3D]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </div>
             </div>
 
             {/* RESULT */}
@@ -256,248 +235,186 @@ export default function CreativePetsSection() {
         </div>
       </div>
 
-      {/* GRID */}
-      <div className="max-w-6xl mx-auto px-4">
+      {/* NO DATA */}
+      {
+        pets.length === 0 ?
 
-        <div className="grid md:grid-cols-2 gap-x-20 gap-y-28">
+        (
 
-          {
-            pets
-            ?.slice(0, visible)
-            ?.map((pet) => (
+          <div className="max-w-4xl mx-auto px-4">
 
-              <div
-                key={pet._id}
-                className={`
-                  relative
+            <div className="bg-white/70 backdrop-blur-2xl border border-white/30 rounded-[35px] p-10 md:p-16 text-center shadow-[0_20px_70px_rgba(0,0,0,0.08)]">
 
-                  ${pet._id % 2 === 0 ? "md:-mt-16" : "md:mt-20"}
-                `}
-              >
+              <div className="w-28 h-28 mx-auto rounded-full bg-[#F8F5EE] flex items-center justify-center">
 
-                {/* IMAGE */}
-                <div className="relative overflow-hidden rounded-[10px] group">
+                🐾
+              </div>
 
-                  <img
-                    src={pet.image}
-                    alt={pet.petName}
-                    className="w-full h-[560px] object-cover group-hover:scale-105 transition duration-700"
-                  />
+              <h2 className="text-4xl font-black text-[#1E2E23] mt-8">
 
-                  {/* OVERLAY */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                No Pets Found
+              </h2>
 
-                  {/* BADGES */}
-                  <div className="absolute top-5 left-5 right-5 flex justify-between">
+              <p className="text-gray-500 text-lg leading-relaxed max-w-2xl mx-auto mt-5">
 
-                    <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-[11px] font-black text-[#1E2E23]">
+                No pets available right now.
+                Try another search or category.
+              </p>
+            </div>
+          </div>
+        )
 
-                      {pet.species}
-                    </span>
+        :
 
-                    <span className="bg-[#F4A300] text-white px-4 py-2 rounded-full text-[11px] font-black">
+        (
 
-                      ${pet.adoptionFee}
-                    </span>
-                  </div>
+          <div className="max-w-6xl mx-auto px-4">
 
-                  {/* PAW */}
-                  <img
-                    src="/image(116).png"
-                    alt="paw"
+            <div className="grid md:grid-cols-2 gap-x-20 gap-y-28">
+
+              {
+                pets
+                ?.slice(0, visible)
+                ?.map((pet, index) => (
+
+                  <div
+                    key={pet._id}
                     className={`
-                      absolute w-20 opacity-90
+                      relative
 
                       ${
-                        pet._id % 2 === 0
-                        ? "bottom-5 right-5"
-                        : "bottom-5 left-5"
+                        index % 2 === 0
+                        ? "md:-mt-16"
+                        : "md:mt-20"
                       }
                     `}
-                  />
-                </div>
+                  >
 
-                {/* CONTENT */}
-                <div
-                  className={`
-                    bg-[#F5F0E4]
-                    p-7
-                    max-w-[360px]
-                    relative z-10
+                    {/* IMAGE */}
+                    <div className="relative overflow-hidden rounded-[10px] group">
 
-                    ${
-                      pet._id % 2 === 0
-                      ? "-mt-16 ml-auto"
-                      : "-mt-16"
-                    }
-                  `}
-                >
+                      <img
+                        src={pet.image}
+                        alt={pet.petName}
+                        className="w-full h-[560px] object-cover group-hover:scale-105 transition duration-700"
+                      />
 
-                  {/* SMALL TEXT */}
-                  <p className="uppercase text-[10px] tracking-[3px] text-[#1E4D3D] font-bold">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
 
-                    Rescue & Adoption
-                  </p>
+                      {/* BADGES */}
+                      <div className="absolute top-5 left-5 right-5 flex justify-between">
 
-                  {/* NAME */}
-                  <h3 className="text-4xl font-black text-[#1E2E23] mt-4 leading-[1.1]">
+                        <span className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-[11px] font-black text-[#1E2E23]">
 
-                    {pet.petName}
-                  </h3>
+                          {pet.species}
+                        </span>
 
-                  {/* DESCRIPTION */}
-                  <p className="text-gray-500 leading-relaxed mt-4 text-sm">
+                        <span className="bg-[#F4A300] text-white px-4 py-2 rounded-full text-[11px] font-black">
 
-                    {pet.description}
-                  </p>
-
-                  {/* INFO */}
-                  <div className="grid grid-cols-2 gap-6 mt-8">
-
-                    <div>
-
-                      <p className="text-[10px] uppercase text-gray-400 font-bold">
-
-                        Breed
-                      </p>
-
-                      <h4 className="font-black text-[#1E2E23] mt-1 text-sm">
-
-                        {pet.breed}
-                      </h4>
+                          ${pet.adoptionFee}
+                        </span>
+                      </div>
                     </div>
 
-                    <div>
+                    {/* CONTENT */}
+                    <div
+                      className={`
+                        bg-[#F5F0E4]
+                        p-7
+                        max-w-[360px]
+                        relative z-10
 
-                      <p className="text-[10px] uppercase text-gray-400 font-bold">
-
-                        Age
-                      </p>
-
-                      <h4 className="font-black text-[#1E2E23] mt-1 text-sm">
-
-                        {pet.age}
-                      </h4>
-                    </div>
-
-                    <div>
-
-                      <p className="text-[10px] uppercase text-gray-400 font-bold">
-
-                        Gender
-                      </p>
-
-                      <h4 className="font-black text-[#1E2E23] mt-1 text-sm">
-
-                        {pet.gender}
-                      </h4>
-                    </div>
-
-                    <div>
-
-                      <p className="text-[10px] uppercase text-gray-400 font-bold">
-
-                        Health
-                      </p>
-
-                      <h4 className="font-black text-[#1E2E23] mt-1 text-sm">
-
-                        {pet.healthStatus}
-                      </h4>
-                    </div>
-                  </div>
-
-                  {/* OWNER */}
-                  <div className="mt-7 bg-white/70 backdrop-blur-md border border-white/50 rounded-2xl px-5 py-4">
-
-                    <p className="text-[10px] uppercase text-[#1E4D3D] font-bold">
-
-                      Owner Email
-                    </p>
-
-                    <h4 className="font-semibold text-[#1E2E23] mt-1 text-sm break-all">
-
-                      {pet.ownerEmail}
-                    </h4>
-                  </div>
-
-                  {/* BUTTONS */}
-                  <div className="flex gap-3 mt-8">
-
-                    {/* VIEW DETAILS */}
-                    <Link
-                      href={`/pets/${pet._id}`}
-                      className="flex-1"
+                        ${
+                          index % 2 === 0
+                          ? "-mt-16 ml-auto"
+                          : "-mt-16"
+                        }
+                      `}
                     >
 
-                      <button className="w-full bg-[#1E4D3D] hover:bg-[#16382d] text-white h-[55px] rounded-full text-sm font-black transition-all duration-300 hover:scale-[1.03] shadow-xl">
+                      <p className="uppercase text-[10px] tracking-[3px] text-[#1E4D3D] font-bold">
 
-                        View Details
-                      </button>
-                    </Link>
+                        Rescue & Adoption
+                      </p>
 
-                    {/* ADOPT NOW */}
-                    <Link href={`/pets/${pet._id}`}>
+                      <h3 className="text-4xl font-black text-[#1E2E23] mt-4 leading-[1.1]">
 
-                      <button className="h-[55px] px-7 rounded-full bg-[#12372A] text-white font-black">
+                        {pet.petName}
+                      </h3>
 
-                        Adopt Now
-                      </button>
-                    </Link>
+                      <p className="text-gray-500 leading-relaxed mt-4 text-sm">
+
+                        {pet.description}
+                      </p>
+
+                      {/* BUTTON */}
+                      <div className="flex gap-3 mt-8">
+
+                        <Link
+                          href={`/pets/${pet._id}`}
+                          className="flex-1"
+                        >
+
+                          <button className="w-full bg-[#1E4D3D] hover:bg-[#16382d] text-white h-[55px] rounded-full text-sm font-black transition-all duration-300 hover:scale-[1.03] shadow-xl">
+
+                            View Details
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-
-        {/* MORE PETS */}
-        {
-          visible < pets.length && (
-
-            <div className="flex justify-center mt-24">
-
-              <button
-                onClick={HandleMorePets}
-                className="
-                  bg-[#12372A]
-                  hover:bg-[#0d281f]
-                  text-white
-                  h-[68px]
-                  px-12
-                  rounded-full
-                  text-lg
-                  font-black
-                  transition-all
-                  duration-300
-                  hover:scale-[1.05]
-                  shadow-2xl
-                  min-w-[220px]
-                "
-              >
-
-                {
-                  loading
-
-                  ?
-
-                  <div className="flex items-center gap-3">
-
-                    {/* SPINNER */}
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-
-                    Loading...
-                  </div>
-
-                  :
-
-                  "More Pets 🐾"
-                }
-              </button>
+                ))
+              }
             </div>
-          )
-        }
-      </div>
+
+            {/* LOAD MORE */}
+            {
+              visible < pets.length && (
+
+                <div className="flex justify-center mt-24">
+
+                  <button
+                    onClick={HandleMorePets}
+                    className="
+                      bg-[#12372A]
+                      hover:bg-[#0d281f]
+                      text-white
+                      h-[68px]
+                      px-12
+                      rounded-full
+                      text-lg
+                      font-black
+                      transition-all
+                      duration-300
+                      hover:scale-[1.05]
+                      shadow-2xl
+                      min-w-[220px]
+                    "
+                  >
+
+                    {
+                      loading
+
+                      ?
+
+                      <div className="flex items-center gap-3">
+
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+
+                        Loading...
+                      </div>
+
+                      :
+
+                      "More Pets 🐾"
+                    }
+                  </button>
+                </div>
+              )
+            }
+          </div>
+        )
+      }
     </section>
   );
 }

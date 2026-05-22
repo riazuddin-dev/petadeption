@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export function proxy(request) {
+export function proxy() {
   // const token = request.cookies.get("token");
 
   // // PRIVATE ROUTE
