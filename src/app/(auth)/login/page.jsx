@@ -26,8 +26,8 @@ export default function LoginPage() {
     handleSubmit,
   } = useForm();
 
-  const HandleSingIn =
-  async (data) => {
+  // LOGIN
+  const HandleSingIn = async (data) => {
 
     const {
       email,
@@ -46,27 +46,7 @@ export default function LoginPage() {
     if(error){
 
       toast.error(
-
-        "Wrong email or password 😢",
-
-        {
-          description:
-            "Please check your credentials.",
-
-          duration: 3000,
-
-          style: {
-
-            background:
-              "#3b0d0d",
-
-            color:
-              "#fff",
-
-            border:
-              "1px solid #ff4d4d",
-          },
-        }
+        "Wrong email or password 😢"
       );
 
       return;
@@ -74,61 +54,16 @@ export default function LoginPage() {
 
     if(item){
 
-      await fetch(
-
-`${process.env.NEXT_PUBLIC_API_URL}/jwt`,
-
-        {
-          method: "POST",
-
-          credentials:
-            "include",
-
-          headers: {
-
-            "content-type":
-              "application/json",
-          },
-
-          body:
-            JSON.stringify({
-
-              email:
-                item.user.email,
-            }),
-        }
-      );
-
       toast.success(
-
-        "Login successful 🎉",
-
-        {
-          description:
-            "Welcome back to PawHaven 🐾",
-
-          duration: 3000,
-
-          style: {
-
-            background:
-              "#12372A",
-
-            color:
-              "#fff",
-
-            border:
-              "1px solid #F4A300",
-          },
-        }
+        "Login successful 🎉"
       );
 
       redirect("/");
     }
   };
 
-  const HandleGoogle =
-  async () => {
+  // GOOGLE LOGIN
+  const HandleGoogle = async () => {
 
     toast.loading(
       "Connecting with Google..."
@@ -144,6 +79,7 @@ export default function LoginPage() {
 
     <section className="min-h-screen bg-[#F4EFE6] overflow-hidden relative flex items-center justify-center px-4 py-10">
 
+      {/* BACK */}
       <div className="absolute top-5 left-5 z-50">
 
         <Link
@@ -173,18 +109,22 @@ export default function LoginPage() {
         </Link>
       </div>
 
+      {/* BG */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#00A86B]/10 rounded-full blur-3xl"></div>
 
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#F4A300]/10 rounded-full blur-3xl"></div>
 
+      {/* MAIN */}
       <div className="relative w-full max-w-6xl grid lg:grid-cols-2 overflow-hidden rounded-[55px] bg-white shadow-[0_25px_120px_rgba(0,0,0,0.12)]">
 
+        {/* LEFT */}
         <div className="relative bg-[#005F56] p-10 lg:p-14 flex flex-col justify-between overflow-hidden">
 
           <div className="absolute -top-20 -right-20 w-[280px] h-[280px] bg-[#F4A300]/20 rounded-full blur-3xl"></div>
 
           <div>
 
+            {/* BRAND */}
             <div className="flex items-center gap-4">
 
               <div className="relative">
@@ -210,6 +150,7 @@ export default function LoginPage() {
               </div>
             </div>
 
+            {/* HERO */}
             <div className="mt-16">
 
               <div className="inline-flex items-center gap-2 bg-white/10 border border-white/10 backdrop-blur-md px-5 py-2 rounded-full">
@@ -241,6 +182,7 @@ export default function LoginPage() {
             </div>
           </div>
 
+          {/* IMAGE */}
           <div className="mt-10">
 
             <div className="overflow-hidden rounded-[40px] border-[4px] border-white/10 shadow-2xl">
@@ -254,6 +196,7 @@ export default function LoginPage() {
           </div>
         </div>
 
+        {/* RIGHT */}
         <div className="bg-white/70 backdrop-blur-xl p-7 lg:p-10 flex items-center">
 
           <div className="w-full">
@@ -268,11 +211,13 @@ export default function LoginPage() {
               Sign In
             </h2>
 
+            {/* FORM */}
             <form
               className="mt-8 space-y-5"
               onSubmit={handleSubmit(HandleSingIn)}
             >
 
+              {/* EMAIL */}
               <div className="relative">
 
                 <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#00A86B]" />
@@ -285,6 +230,7 @@ export default function LoginPage() {
                 />
               </div>
 
+              {/* PASSWORD */}
               <div className="relative">
 
                 <LockKeyhole className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#00A86B]" />
@@ -297,6 +243,7 @@ export default function LoginPage() {
                 />
               </div>
 
+              {/* BUTTON */}
               <button
                 className="
                   w-full
@@ -319,6 +266,7 @@ export default function LoginPage() {
               </button>
             </form>
 
+            {/* GOOGLE */}
             <button
               onClick={HandleGoogle}
               className="w-full mt-6 h-[62px] rounded-[24px] bg-white border border-gray-100 shadow-lg flex items-center justify-center gap-4 font-bold text-[#173c2d] hover:bg-gray-50 transition duration-300"
@@ -329,6 +277,7 @@ export default function LoginPage() {
               Continue with Google
             </button>
 
+            {/* REGISTER */}
             <p className="text-center text-gray-500 mt-7">
 
               Don&apos;t have an account?{" "}
