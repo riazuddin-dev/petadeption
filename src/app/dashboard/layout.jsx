@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 
-import { usePathname }
-from "next/navigation";
+import {
+  usePathname,
+} from "next/navigation";
 
 import {
   PawPrint,
@@ -19,9 +20,7 @@ import {
 } from "@/lib/auth-client";
 
 export default function DashboardLayout({
-
   children,
-
 }) {
 
   const pathname =
@@ -68,7 +67,15 @@ export default function DashboardLayout({
 
   return (
 
-    <section className="min-h-screen bg-[#F6F1E8] flex overflow-hidden relative">
+    <section className="
+      min-h-screen
+      bg-[#F6F1E8]
+      flex
+      flex-col
+      lg:flex-row
+      relative
+      overflow-hidden
+    ">
 
       {/* BLUR */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#00A86B]/10 rounded-full blur-3xl"></div>
@@ -76,18 +83,26 @@ export default function DashboardLayout({
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#F4A300]/10 rounded-full blur-3xl"></div>
 
       {/* SIDEBAR */}
-      <aside className="hidden lg:flex w-[320px] bg-[#12372A] relative overflow-hidden flex-col justify-between p-8">
-
-        {/* BLUR */}
-        <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-[#F4A300]/10 rounded-full blur-3xl"></div>
+      <aside className="
+        hidden
+        lg:flex
+        w-[320px]
+        min-h-screen
+        bg-[#12372A]
+        relative
+        overflow-hidden
+        flex-col
+        justify-between
+        p-8
+      ">
 
         {/* TOP */}
-        <div className="relative z-10 ">
+        <div>
 
           {/* LOGO */}
           <Link href="/">
 
-            <div className="flex items-center gap-4  space-y-8">
+            <div className="flex items-center gap-4">
 
               <div className="w-16 h-16 rounded-full bg-[#F4A300] flex items-center justify-center shadow-2xl">
 
@@ -110,7 +125,15 @@ export default function DashboardLayout({
           </Link>
 
           {/* USER */}
-          <div className=" space-y-8 bg-white/10 backdrop-blur-2xl border border-white/10 rounded-[32px] p-5">
+          <div className="
+            mt-10
+            bg-white/10
+            backdrop-blur-2xl
+            border
+            border-white/10
+            rounded-[32px]
+            p-5
+          ">
 
             <div className="flex items-center gap-4">
 
@@ -125,20 +148,50 @@ export default function DashboardLayout({
 
                   alt="user"
 
-                  className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-2xl"
+                  className="
+                    w-20
+                    h-20
+                    rounded-full
+                    object-cover
+                    border-4
+                    border-white
+                    shadow-2xl
+                  "
                 />
 
-                <div className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-[#00A86B] border-2 border-white animate-pulse space-y-5"></div>
+                <div className="
+                  absolute
+                  bottom-1
+                  right-1
+                  w-4
+                  h-4
+                  rounded-full
+                  bg-[#00A86B]
+                  border-2
+                  border-white
+                  animate-pulse
+                "></div>
               </div>
 
               <div>
 
-                <p className="uppercase tracking-[3px] text-[#F4A300] text-[10px] font-black">
+                <p className="
+                  uppercase
+                  tracking-[3px]
+                  text-[#F4A300]
+                  text-[10px]
+                  font-black
+                ">
 
                   Active User
                 </p>
 
-                <h3 className="text-white font-black text-xl mt-2">
+                <h3 className="
+                  text-white
+                  font-black
+                  text-xl
+                  mt-2
+                ">
 
                   {
                     session?.user?.name
@@ -147,7 +200,12 @@ export default function DashboardLayout({
                   }
                 </h3>
 
-                <p className="text-white/60 text-sm mt-1 break-all">
+                <p className="
+                  text-white/60
+                  text-sm
+                  mt-1
+                  break-all
+                ">
 
                   {
                     session?.user?.email
@@ -182,7 +240,6 @@ export default function DashboardLayout({
                         flex items-center gap-4 px-5 h-[68px]
                         rounded-[24px]
                         transition-all duration-300
-                        group
 
                         ${
                           isActive
@@ -198,26 +255,15 @@ export default function DashboardLayout({
                       `}
                     >
 
-                      <div
-
-                        className={`
-                          w-12 h-12 rounded-full
-                          flex items-center justify-center
-                          transition-all duration-300
-
-                          ${
-                            isActive
-
-                            ?
-
-                            "bg-white/30"
-
-                            :
-
-                            "bg-white/10 group-hover:bg-white/20"
-                          }
-                        `}
-                      >
+                      <div className="
+                        w-12
+                        h-12
+                        rounded-full
+                        bg-white/10
+                        flex
+                        items-center
+                        justify-center
+                      ">
 
                         <Icon className="w-5 h-5" />
                       </div>
@@ -234,92 +280,328 @@ export default function DashboardLayout({
           </div>
         </div>
 
-        {/* BOTTOM */}
-        <div className="relative z-10 mt-40">
+        {/* HOME */}
+        <Link href="/">
 
-          {/* HOME */}
-          <Link href="/">
+          <button className="
+            w-full
+            bg-white
+            hover:bg-[#F4A300]
 
-            <button className="w-full bg-white hover:bg-[#F4A300] text-[#12372A] h-[65px] rounded-[24px] text-sm font-black shadow-xl transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-3">
+            text-[#12372A]
 
-              <Home className="w-5 h-5" />
+            h-[65px]
 
-              Back To Home
-            </button>
-          </Link>
+            rounded-[24px]
 
-          {/* CARD */}
-          <div className="mt-6 relative overflow-hidden rounded-[32px]">
+            text-sm
+            font-black
 
-            <img
-              src="https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1200&auto=format&fit=crop"
+            shadow-xl
 
-              alt="pet"
+            transition-all
+            duration-300
 
-              className="w-full h-[240px] object-cover"
-            />
+            flex
+            items-center
+            justify-center
+            gap-3
+          ">
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <Home className="w-5 h-5" />
 
-            <div className="absolute bottom-5 left-5 right-5">
-
-              <p className="uppercase tracking-[3px] text-[#F4A300] text-[10px] font-black">
-
-                Rescue Center
-              </p>
-
-              <h3 className="text-white text-2xl font-black mt-3 leading-[1.2]">
-
-                Every Pet
-                <br />
-
-                Deserves Love 🐾
-              </h3>
-            </div>
-          </div>
-        </div>
+            Back To Home
+          </button>
+        </Link>
       </aside>
 
       {/* MAIN */}
-      <main className="flex-1 overflow-y-auto relative z-10">
+      <main className="
+        flex-1
+        relative
+        z-10
+        w-full
+      ">
+
+        {/* MOBILE TOP */}
+        <div className="
+          lg:hidden
+          sticky
+          top-0
+          z-50
+
+          bg-[#12372A]/95
+          backdrop-blur-2xl
+
+          border-b
+          border-white/10
+        ">
+
+          {/* HEADER */}
+          <div className="
+            px-4
+            py-4
+
+            flex
+            items-center
+            justify-between
+          ">
+
+            <div className="
+              flex
+              items-center
+              gap-3
+            ">
+
+              <div className="
+                w-12
+                h-12
+
+                rounded-2xl
+
+                bg-[#F4A300]
+
+                flex
+                items-center
+                justify-center
+
+                shadow-xl
+              ">
+
+                <PawPrint className="
+                  w-6
+                  h-6
+                  text-[#12372A]
+                " />
+              </div>
+
+              <div>
+
+                <h2 className="
+                  text-white
+                  font-black
+                  text-xl
+                ">
+
+                  PawHaven
+                </h2>
+
+                <p className="
+                  text-white/50
+                  text-xs
+                ">
+
+                  Dashboard
+                </p>
+              </div>
+            </div>
+
+            <Link href="/">
+
+              <button className="
+                bg-[#F4A300]
+
+                hover:bg-[#e8a000]
+
+                transition-all
+                duration-300
+
+                px-4
+                h-[45px]
+
+                rounded-2xl
+
+                text-sm
+                font-black
+
+                text-[#12372A]
+
+                shadow-lg
+              ">
+
+                Home
+              </button>
+            </Link>
+          </div>
+
+          {/* MOBILE MENU */}
+          <div className="
+            flex
+            gap-3
+
+            overflow-x-auto
+
+            px-4
+            pb-4
+
+            scrollbar-hide
+          ">
+
+            {
+              navLinks.map((item) => {
+
+                const Icon =
+                  item.icon;
+
+                const isActive =
+                  pathname === item.href;
+
+                return (
+
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                  >
+
+                    <div
+
+                      className={`
+                        min-w-fit
+
+                        px-5
+                        h-[55px]
+
+                        rounded-2xl
+
+                        flex
+                        items-center
+                        gap-3
+
+                        font-bold
+
+                        transition-all
+                        duration-300
+
+                        ${
+                          isActive
+
+                          ?
+
+                          "bg-[#F4A300] text-[#12372A] shadow-xl"
+
+                          :
+
+                          "bg-white/10 text-white"
+                        }
+                      `}
+                    >
+
+                      <Icon className="w-5 h-5" />
+
+                      {item.name}
+                    </div>
+                  </Link>
+                );
+              })
+            }
+          </div>
+        </div>
 
         {/* TOPBAR */}
-        <div className="sticky top-0 z-20 backdrop-blur-2xl bg-white/40 border-b border-white/20 px-6 lg:px-10 h-[95px] flex items-center justify-between">
+        <div className="
+          sticky
+          top-0
+          z-20
 
-          {/* LEFT */}
+          backdrop-blur-2xl
+
+          bg-white/40
+
+          border-b
+          border-white/20
+
+          px-4
+          lg:px-10
+
+          py-5
+
+          flex
+          items-center
+          justify-between
+        ">
+
           <div>
 
-            <div className="inline-flex items-center gap-3 bg-white/70 backdrop-blur-xl border border-white/30 px-5 py-3 rounded-full shadow-lg">
+            <div className="
+              inline-flex
+              items-center
+              gap-3
+
+              bg-white/70
+
+              backdrop-blur-xl
+
+              border
+              border-white/30
+
+              px-4
+              py-2
+
+              rounded-full
+
+              shadow-lg
+            ">
 
               <Sparkles className="w-5 h-5 text-[#F4A300]" />
 
-              <span className="text-sm font-black text-[#173c2d] tracking-wide">
+              <span className="
+                text-sm
+                font-black
+                text-[#173c2d]
+                tracking-wide
+              ">
 
                 PawHaven Dashboard
               </span>
             </div>
 
-            <h2 className="text-3xl font-black text-[#1E2E23] mt-4">
+            <h2 className="
+              text-2xl
+              lg:text-4xl
+
+              font-black
+
+              text-[#1E2E23]
+
+              mt-4
+            ">
 
               Welcome Back 👋
             </h2>
           </div>
 
-          {/* RIGHT */}
-          <div className="flex items-center gap-4 ">
+          <button className="
+            w-[58px]
+            h-[58px]
 
-            {/* NOTIFICATION */}
-            <button className="w-[58px] h-[58px] rounded-full bg-white/70 backdrop-blur-xl border border-white/30 flex items-center justify-center shadow-lg hover:scale-105 transition">
+            rounded-full
 
-              <Bell className="w-5 h-5 text-[#12372A]" />
-            </button>
-          </div>
+            bg-white/70
+
+            backdrop-blur-xl
+
+            border
+            border-white/30
+
+            flex
+            items-center
+            justify-center
+
+            shadow-lg
+          ">
+
+            <Bell className="w-5 h-5 text-[#12372A]" />
+          </button>
         </div>
 
         {/* CONTENT */}
-        <div className="p-6 lg:p-10">
+        <div className="
+          p-4
+          lg:p-10
+        ">
 
           {children}
+
         </div>
       </main>
     </section>

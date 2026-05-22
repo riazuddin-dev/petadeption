@@ -1,167 +1,112 @@
 const API = process.env.NEXT_PUBLIC_API_URL;
 
+
+
 // ALL PETS
 export const AllUser = async (search = "", species = "") => {
-  const res = await fetch(
-    `${API}/pets?search=${search}&species=${species}`,
+  const res = await fetch(`${API}/pets?search=${search}&species=${species}`);
 
-    {
-      credentials: "include",
-    },
-  );
+  const data = await res.json();
 
-  return await res.json();
+
+  return data;
 };
 
 // SINGLE PET
 export const OneUserId = async (id) => {
-  const res = await fetch(
-    `${API}/pets/${id}`,
-
-    {
-      credentials: "include",
-    },
-  );
+  const res = await fetch(`${API}/pets/${id}`);
 
   return await res.json();
 };
 
 // ADD PET
 export const catAdd = async (data) => {
-  const res = await fetch(
-    `${API}/pets-add`,
+  const res = await fetch(`${API}/pets-add`, {
+    method: "POST",
 
-    {
-      method: "POST",
-
-      credentials: "include",
-
-      headers: {
-        "content-type": "application/json",
-      },
-
-      body: JSON.stringify(data),
+    headers: {
+      "content-type": "application/json",
     },
-  );
+
+    body: JSON.stringify(data),
+  });
 
   return await res.json();
 };
 
 // MY PETS
 export const PetAddUser = async (id) => {
-  const res = await fetch(
-    `${API}/pet/${id}`,
-
-    {
-      credentials: "include",
-    },
-  );
+  const res = await fetch(`${API}/pet/${id}`);
 
   return await res.json();
 };
 
 // DELETE PET
 export const HandelDelete = async (id) => {
-  const res = await fetch(
-    `${API}/delete-pat/${id}`,
-
-    {
-      method: "DELETE",
-
-      credentials: "include",
-    },
-  );
+  const res = await fetch(`${API}/delete-pat/${id}`, {
+    method: "DELETE",
+  });
 
   return await res.json();
 };
 
 // UPDATE PET
 export const HandelUpdate = async (id, data) => {
-  const res = await fetch(
-    `${API}/update-pet/${id}`,
+  const res = await fetch(`${API}/update-pet/${id}`, {
+    method: "PUT",
 
-    {
-      method: "PUT",
-
-      credentials: "include",
-
-      headers: {
-        "content-type": "application/json",
-      },
-
-      body: JSON.stringify(data),
+    headers: {
+      "content-type": "application/json",
     },
-  );
+
+    body: JSON.stringify(data),
+  });
 
   return await res.json();
 };
 
 // REQUEST PET
 export const RequestPetData = async (data) => {
-  const res = await fetch(
-    `${API}/request-pet`,
+  const res = await fetch(`${API}/request-pet`, {
+    method: "POST",
 
-    {
-      method: "POST",
-
-      credentials: "include",
-
-      headers: {
-        "content-type": "application/json",
-      },
-
-      body: JSON.stringify(data),
+    headers: {
+      "content-type": "application/json",
     },
-  );
+
+    body: JSON.stringify(data),
+  });
 
   return await res.json();
 };
 
 // GET REQUEST
 export const RequestData = async (id) => {
-  const res = await fetch(
-    `${API}/request-pet/${id}`,
-
-    {
-      credentials: "include",
-    },
-  );
+  const res = await fetch(`${API}/request-pet/${id}`);
 
   return await res.json();
 };
 
 // UPDATE REQUEST STATUS
 export const UpdateStatus = async (id, status) => {
-  const res = await fetch(
-    `${API}/request-status/${id}`,
+  const res = await fetch(`${API}/request-status/${id}`, {
+    method: "PUT",
 
-    {
-      method: "PUT",
-
-      credentials: "include",
-
-      headers: {
-        "content-type": "application/json",
-      },
-
-      body: JSON.stringify({
-        status,
-      }),
+    headers: {
+      "content-type": "application/json",
     },
-  );
+
+    body: JSON.stringify({
+      status,
+    }),
+  });
 
   return await res.json();
 };
 
 // MY REQUESTS
 export const MyRequestData = async (id) => {
-  const res = await fetch(
-    `${API}/my-request/${id}`,
-
-    {
-      credentials: "include",
-    },
-  );
+  const res = await fetch(`${API}/my-request/${id}`);
 
   return await res.json();
 };
