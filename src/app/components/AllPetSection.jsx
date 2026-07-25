@@ -34,39 +34,52 @@ export default function CreativePetsSection() {
   ] = useState(4);
 
   const [
-    loading,
-    setLoading
+    loadingMore,
+    setLoadingMore
   ] = useState(false);
 
+  const [
+    initialLoading,
+    setInitialLoading
+  ] = useState(true);
+
+  const [
+    error,
+    setError
+  ] = useState("");
+
   useEffect(() => {
+    let cancelled = false;
+    setInitialLoading(true);
+    setError("");
 
-    AllUser(
-      search,
-      species
-    )
+    AllUser(search, species)
+      .then((data) => {
+        if (cancelled) return;
+        setPets(Array.isArray(data) ? data : []);
+        setVisible(4);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setPets([]);
+        setError("Could not load pets. Check that the API is running.");
+      })
+      .finally(() => {
+        if (!cancelled) setInitialLoading(false);
+      });
 
-    .then((data) => {
-
-      setPets(data);
-    });
-
+    return () => {
+      cancelled = true;
+    };
   }, [search, species]);
 
   // LOAD MORE
-  const HandleMorePets =
-  () => {
-
-    setLoading(true);
-
+  const HandleMorePets = () => {
+    setLoadingMore(true);
     setTimeout(() => {
-
-      setVisible(
-        (prev) => prev + 4
-      );
-
-      setLoading(false);
-
-    }, 1200);
+      setVisible((prev) => prev + 4);
+      setLoadingMore(false);
+    }, 400);
   };
 
   return (
@@ -86,6 +99,35 @@ export default function CreativePetsSection() {
         px-4
       ">
 
+        {initialLoading && (
+          <div className="grid md:grid-cols-2 gap-x-20 gap-y-16 mb-10">
+            {[0, 1].map((i) => (
+              <div key={i} className="animate-pulse">
+                <div className="h-[360px] rounded-[20px] bg-[#e8e2d4]" />
+                <div className="mt-6 h-28 max-w-[360px] rounded-[30px] bg-white/70 border border-white/50" />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {error && !initialLoading && (
+          <div className="rounded-3xl border border-rose-200 bg-rose-50 px-6 py-8 text-center text-rose-700 mb-10">
+            <p className="font-bold">{error}</p>
+            <p className="mt-2 text-sm text-rose-600/80">
+              Start the API server, then refresh this page.
+            </p>
+          </div>
+        )}
+
+        {!initialLoading && !error && pets.length === 0 && (
+          <div className="rounded-3xl border border-[#00A86B]/15 bg-white/70 px-6 py-16 text-center mb-10">
+            <p className="text-2xl font-black text-[#173c2d]">No pets found</p>
+            <p className="mt-2 text-gray-500 text-sm max-w-md mx-auto">
+              Try another search or species filter. You can also add a listing from the dashboard after signing in.
+            </p>
+          </div>
+        )}
+
         <div className="
           grid
           md:grid-cols-2
@@ -94,6 +136,7 @@ export default function CreativePetsSection() {
         ">
 
           {
+            !initialLoading &&
             pets
             ?.slice(0, visible)
             ?.map((pet, index) => (
@@ -313,70 +356,34 @@ export default function CreativePetsSection() {
 
               <button
                 onClick={HandleMorePets}
-
-                disabled={loading}
-
+                disabled={loadingMore}
                 className="
                   bg-[#12372A]
                   hover:bg-[#0d281f]
-
                   disabled:opacity-70
-
                   text-white
-
                   h-[68px]
                   px-12
-
                   rounded-full
-
                   text-lg
                   font-black
-
                   transition-all
                   duration-300
-
                   shadow-2xl
-
                   min-w-[220px]
-
                   flex
                   items-center
                   justify-center
                 "
               >
-
-                {
-                  loading
-
-                  ?
-
-                  <span className="
-                    flex
-                    items-center
-                    justify-center
-                    gap-3
-                  ">
-
-                    <span className="
-                      w-5
-                      h-5
-
-                      border-[3px]
-                      border-white/30
-                      border-t-white
-
-                      rounded-full
-
-                      animate-spin
-                    "></span>
-
-                    Loading...
+                {loadingMore ? (
+                  <span className="flex items-center justify-center gap-3">
+                    <span className="w-5 h-5 border-[3px] border-white/30 border-t-white rounded-full animate-spin" />
+                    Loading…
                   </span>
-
-                  :
-
-                  "More Pets 🐾"
-                }
+                ) : (
+                  "More Pets"
+                )}
               </button>
             </div>
           )
