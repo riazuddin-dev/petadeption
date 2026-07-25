@@ -5,35 +5,33 @@ export const AllUser = async (
   search = "",
   species = ""
 ) => {
-
-  const res =
-  await fetch(
-
-`${API}/pets?search=${search}&species=${species}`
-  );
-
-  return await res.json();
+  try {
+    const res = await fetch(
+      `${API}/pets?search=${search}&species=${species}`,
+      { cache: "no-store" }
+    );
+    if (!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
 };
 
 // SINGLE PET
-export const OneUserId =
-async (id) => {
-
-  const res =
-  await fetch(
-
-`${API}/pets/${id}`,
-
-    {
+export const OneUserId = async (id) => {
+  try {
+    const res = await fetch(`${API}/pets/${id}`, {
       headers: {
-
-        authorization:
-        "Bearer login",
+        authorization: "Bearer login",
       },
-    }
-  );
-
-  return await res.json();
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
 };
 
 // ADD PET
